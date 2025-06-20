@@ -14,5 +14,37 @@ function getComputerChoice() {
 }
  }
     
+function getHumanChoice() {
+    let choice = prompt("Enter your choice: Rock, Paper, or Scissors")
+    let finalChoice = choice.toLowerCase();
+    if (finalChoice == "rock") {
+        return ("Rock");
+    } else if (finalChoice == "paper") {
+        return ("Paper");
+    } else if (finalChoice == "scissors") {
+        return ("Scissors");
+    }
+
+}
+    let humanScore = 0;
+    let computerScore = 0;
+
+    function playRound(humanChoice , computerChoice) {
+
     
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     
