@@ -53,20 +53,21 @@ function getHumanChoice() {
 
 
     function playGame() {
-
+        // plays 5 rounds
         for (let i = 0; i < 5; i++) {
             const humanSelection = getHumanChoice();
             const computerSelection = getComputerChoice();
             playRound(humanSelection, computerSelection);   
         }
 
-        if (humanScore > computerScore) {
+        if ( humanScore > computerScore ) {
             console.log("Game over: You win!");
-        }  else if ( humanScore < computerScore) {
+        }  else if ( humanScore < computerScore ) {
             console.log("Game over: You lose!");
-        } else  {
+        } else {
             console.log("Game over: It's a draw!");
         }
+        // asks if they want to play again
         if (confirm("Play again?")) {
             humanScore = 0;
             computerScore = 0;
