@@ -1,5 +1,5 @@
-// make the options
-
+// ===== COMPUTER CHOICE FUNCTION =====
+// Generates a random choice (rock, paper, or scissors) for the computer
 function getComputerChoice() {
     function choiceNumber() {
         return Math.floor(Math.random() * 3 + 1);
@@ -11,92 +11,112 @@ function getComputerChoice() {
         return ("paper");
     } else if (choice == 3) {
         return ("scissors");
+    }
 }
- }
-    
+
+// ===== HUMAN CHOICE HANDLER =====
+// Handles button clicks and starts a new round
 function getHumanChoice(choice) {
     const computerChoice = getComputerChoice();
     playRound(choice, computerChoice);
 }
 
+// ===== DOM ELEMENT SELECTIONS =====
+// Select all the game buttons and display elements
 const rockBtn = document.querySelector("button#rock");
 const paperBtn = document.querySelector("button#paper");
 const scissorsBtn = document.querySelector("button#scissors");
 
+// ===== EVENT LISTENERS =====
+// Add click handlers to all game buttons
 rockBtn.addEventListener("click", () => getHumanChoice("rock"));
 paperBtn.addEventListener("click", () => getHumanChoice("paper"));
 scissorsBtn.addEventListener("click", () => getHumanChoice("scissors"));
 
+// ===== GAME STATE VARIABLES =====
+// Track scores and display elements
+let humanScore = 0;
+let computerScore = 0;
 
+const resultText = document.querySelector("p.result");
+const scoreText = document.querySelector("p.score");
 
-
-    let humanScore = 0;
-    let computerScore = 0;
-
-    const resultText = document.querySelector("p.result");
-    const scoreText = document.querySelector("p.score");
-
-    function playRound(humanChoice , computerChoice) {
-        
-        // Stop incrementing if game is over
-        const checkForBtn = document.querySelector("#play-again-button");
-            if (checkForBtn) {
-                return;
-            } 
-        
-        if ((humanChoice === "rock" && computerChoice === "scissors") ||
-            (humanChoice === "paper" && computerChoice === "rock") ||
-            (humanChoice === "scissors" && computerChoice === "paper")) {
-                resultText.textContent = "You win! " + humanChoice + " beats " + computerChoice;
-                humanScore = humanScore + 1;
-                scoreText.textContent = "Human score: " + humanScore + " | " + "Computer score:" + computerScore;
-
-        } else if ((humanChoice === "scissors" && computerChoice === "rock") ||
-                   (humanChoice === "rock" && computerChoice === "paper") ||
-                   (humanChoice === "paper" && computerChoice === "scissors")) {
-                 resultText.textContent = "You lose! " + computerChoice + " beats " + humanChoice;
-                 computerScore = computerScore + 1;
-                 scoreText.textContent = "Human score: " + humanScore + " | " + "Computer score:" + computerScore;
-                
-        } else if (humanChoice === computerChoice) {
-                resultText.textContent = "It's a draw";
-                scoreText.textContent = "Human score: " + humanScore + " | " + "Computer score:" + computerScore;
-        }
-        checkGameWinner();
-    }
-
-    function checkGameWinner() {
-        if (humanScore >= 5) {
-            resultText.textContent = "Game Over! You win the game!";
+// ===== MAIN GAME LOGIC =====
+// Handles a single round of the game
+function playRound(humanChoice, computerChoice) {
+    // Stop incrementing if game is over (Play Again button exists)
+    const checkForBtn = document.querySelector("#play-again-button");
+    if (checkForBtn) {
+        return;
+    } 
+    
+    // Check for human win conditions
+    if ((humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper")) {
+            resultText.textContent = "You win! " + humanChoice + " beats " + computerChoice;
+            humanScore = humanScore + 1;
             scoreText.textContent = "Human score: " + humanScore + " | " + "Computer score:" + computerScore;
-            playAgain();
-        } else if (computerScore >= 5) {
-            resultText.textContent = "Game Over! Computer wins the game!";
+
+    // Check for computer win conditions
+    } else if ((humanChoice === "scissors" && computerChoice === "rock") ||
+               (humanChoice === "rock" && computerChoice === "paper") ||
+               (humanChoice === "paper" && computerChoice === "scissors")) {
+         resultText.textContent = "You lose! " + computerChoice + " beats " + humanChoice;
+         computerScore = computerScore + 1;
+         scoreText.textContent = "Human score: " + humanScore + " | " + "Computer score:" + computerScore;
+        
+    // Check for draw condition
+    } else if (humanChoice === computerChoice) {
+            resultText.textContent = "It's a draw";
             scoreText.textContent = "Human score: " + humanScore + " | " + "Computer score:" + computerScore;
-            playAgain();
-        }
     }
+    
+    checkGameWinner();
+}
 
-
-    function playAgain() {
-        const playAgainBtn = document.createElement("button");
-        const checkForBtn = document.querySelector("#play-again-button")
-        if (checkForBtn) {
-            return;
-        }
-        playAgainBtn.textContent = "Play Again";
-        playAgainBtn.id = "play-again-button";
-        playAgainBtn.addEventListener("click", resetGame => {
-            humanScore = 0;
-            computerScore = 0;
-            resultText.textContent = "";
-            scoreText.textContent = "Human score: 0 | Computer score: 0";
-            if (playAgainBtn) {
-                playAgainBtn.remove();
-            }
-        });
-        document.querySelector(".result-container").appendChild(playAgainBtn);
+// ===== GAME WINNER CHECK =====
+// Checks if either player has reached 5 points and ends the game
+function checkGameWinner() {
+    if (humanScore >= 5) {
+        resultText.textContent = "Game Over! You win the game!";
+        scoreText.textContent = "Human score: " + humanScore + " | " + "Computer score:" + computerScore;
+        playAgain();
+    } else if (computerScore >= 5) {
+        resultText.textContent = "Game Over! Computer wins the game!";
+        scoreText.textContent = "Human score: " + humanScore + " | " + "Computer score:" + computerScore;
+        playAgain();
     }
+}
+
+// ===== PLAY AGAIN FUNCTIONALITY =====
+// Creates a Play Again button when the game ends
+function playAgain() {
+    const playAgainBtn = document.createElement("button");
+    const checkForBtn = document.querySelector("#play-again-button")
+    
+    // Prevent multiple Play Again buttons
+    if (checkForBtn) {
+        return;
+    }
+    
+    playAgainBtn.textContent = "Play Again";
+    playAgainBtn.id = "play-again-button";
+    
+    // Add reset functionality to the button
+    playAgainBtn.addEventListener("click", resetGame => {
+        humanScore = 0;
+        computerScore = 0;
+        resultText.textContent = "";
+        scoreText.textContent = "Human score: 0 | Computer score: 0";
+        if (playAgainBtn) {
+            playAgainBtn.remove();
+        }
+    });
+    
+    // Add the button to the page
+    document.querySelector(".result-container").appendChild(playAgainBtn);
+}
 
 
 
