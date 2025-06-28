@@ -128,3 +128,45 @@ header .score-header {
     font-size: 1.1rem;
     font-weight: bold;
 }
+
+@media (max-width: 500px) {
+    .game-container {
+        padding: 16px;
+        margin-top: 70px;
+    }
+    .button-container {
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+    button {
+        padding: 8px;
+        border-radius: 8px;
+    }
+    button img {
+        width: 100px;
+        border-radius: 6px;
+    }
+    .result {
+        font-size: 1.2rem;
+    }
+    header {
+        padding: 10px 0 6px 0;
+    }
+    header h1 {
+        font-size: 1.1rem;
+        letter-spacing: 4px;
+        margin-bottom: 8px;
+    }
+    header .rules {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+    header .score-header {
+        font-size: 1rem;
+    }
+    #play-again-button {
+        margin-top: 10px;
+        padding: 10px;
+        font-size: 1rem;
+    }
+}
