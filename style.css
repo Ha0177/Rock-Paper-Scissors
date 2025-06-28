@@ -5,7 +5,7 @@
 }
 
 body {
-    background: linear-gradient(135deg, #9acace 0%, #189b9bfb 100%);
+    background: linear-gradient(135deg, #3e4745 0%, #252e30fb 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -44,11 +44,20 @@ body.lose {
 button {
     background: rgba(255, 255, 255, 0.2);
     border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 25px;
-    padding: 0;
+    border-radius: 15px;
+    padding: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    outline: none;
     overflow: hidden;
+}
+
+button img {
+    width: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
 }
 
 @keyframes bounce {
