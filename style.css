@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.5s ease;
+}
+
+body.win {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+}
+
+body.draw {
+    background: linear-gradient(135deg, #FFC107 0%, #f8a72d 100%);
+}
+
+body.lose {
+    background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+}
