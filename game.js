@@ -124,6 +124,7 @@ function playAgain() {
         computerScore = 0;
         resultText.textContent = "";
         scoreText.textContent = "Human score: 0 | Computer score: 0";
+        document.body.classList.remove("win", "draw", "lose");
         if (playAgainBtn) {
             playAgainBtn.remove();
         }
