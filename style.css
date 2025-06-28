@@ -5,7 +5,7 @@
 }
 
 body {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #9acace 0%, #189b9bfb 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -23,4 +23,42 @@ body.draw {
 
 body.lose {
     background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+}
+
+.game-container {
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.075);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+@keyframes bounce {
+    0%, 100% { transform : translateY(0); }
+    25% { transform: translateY(-8px); }
+    50% { transform: translateY(-4px); }
+    75% { transform: translateY(-6px); }
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    animation: bounce 0.4s ease-in-out;
 }
