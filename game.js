@@ -39,7 +39,7 @@ let humanScore = 0;
 let computerScore = 0;
 
 const resultText = document.querySelector("p.result");
-const scoreText = document.querySelector("p.score");
+const scoreText = document.querySelector(".score-header");
 
 function updateBackground(result) {
     document.body.classList.remove("win", "draw", "lose");
