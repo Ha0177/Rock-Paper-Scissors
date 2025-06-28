@@ -33,7 +33,7 @@ rockBtn.addEventListener("click", () => getHumanChoice("rock"));
 paperBtn.addEventListener("click", () => getHumanChoice("paper"));
 scissorsBtn.addEventListener("click", () => getHumanChoice("scissors"));
 
-// ===== GAME STATE VARIABLES =====
+// ===== GAME STATE  =====
 // Track scores and display elements
 let humanScore = 0;
 let computerScore = 0;
@@ -41,10 +41,22 @@ let computerScore = 0;
 const resultText = document.querySelector("p.result");
 const scoreText = document.querySelector("p.score");
 
+function updateBackground(result) {
+    document.body.classList.remove("win", "draw", "lose");
+    if (result === "win") {
+        document.body.classList.add("win");
+    } else if (result === "draw") {
+        document.body.classList.add("draw");
+    } else if (result === "lose") {
+        document.body.classList.add("lose");
+    }
+}
+
+
 // ===== MAIN GAME LOGIC =====
 // Handles a single round of the game
 function playRound(humanChoice, computerChoice) {
-    // Stop incrementing if game is over (Play Again button exists)
+    // Stop incrementing if game is over 
     const checkForBtn = document.querySelector("#play-again-button");
     if (checkForBtn) {
         return;
@@ -57,6 +69,7 @@ function playRound(humanChoice, computerChoice) {
             resultText.textContent = "You win! " + humanChoice + " beats " + computerChoice;
             humanScore = humanScore + 1;
             scoreText.textContent = "Human score: " + humanScore + " | " + "Computer score:" + computerScore;
+            updateBackground("win");
 
     // Check for computer win conditions
     } else if ((humanChoice === "scissors" && computerChoice === "rock") ||
@@ -65,11 +78,13 @@ function playRound(humanChoice, computerChoice) {
          resultText.textContent = "You lose! " + computerChoice + " beats " + humanChoice;
          computerScore = computerScore + 1;
          scoreText.textContent = "Human score: " + humanScore + " | " + "Computer score:" + computerScore;
+         updateBackground("lose");
         
     // Check for draw condition
     } else if (humanChoice === computerChoice) {
             resultText.textContent = "It's a draw";
             scoreText.textContent = "Human score: " + humanScore + " | " + "Computer score:" + computerScore;
+            updateBackground("draw");
     }
     
     checkGameWinner();
