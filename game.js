@@ -38,6 +38,12 @@ scissorsBtn.addEventListener("click", () => getHumanChoice("scissors"));
 
     function playRound(humanChoice , computerChoice) {
         
+        // Stop incrementing if game is over
+        const checkForBtn = document.querySelector("#play-again-button");
+            if (checkForBtn) {
+                return;
+            } 
+        
         if ((humanChoice === "rock" && computerChoice === "scissors") ||
             (humanChoice === "paper" && computerChoice === "rock") ||
             (humanChoice === "scissors" && computerChoice === "paper")) {
@@ -49,8 +55,8 @@ scissorsBtn.addEventListener("click", () => getHumanChoice("scissors"));
                    (humanChoice === "rock" && computerChoice === "paper") ||
                    (humanChoice === "paper" && computerChoice === "scissors")) {
                  resultText.textContent = "You lose! " + computerChoice + " beats " + humanChoice;
-                computerScore = computerScore + 1;
-                scoreText.textContent = "Human score: " + humanScore + " | " + "Computer score:" + computerScore;
+                 computerScore = computerScore + 1;
+                 scoreText.textContent = "Human score: " + humanScore + " | " + "Computer score:" + computerScore;
                 
         } else if (humanChoice === computerChoice) {
                 resultText.textContent = "It's a draw";
@@ -74,6 +80,10 @@ scissorsBtn.addEventListener("click", () => getHumanChoice("scissors"));
 
     function playAgain() {
         const playAgainBtn = document.createElement("button");
+        const checkForBtn = document.querySelector("#play-again-button")
+        if (checkForBtn) {
+            return;
+        }
         playAgainBtn.textContent = "Play Again";
         playAgainBtn.id = "play-again-button";
         playAgainBtn.addEventListener("click", resetGame => {
