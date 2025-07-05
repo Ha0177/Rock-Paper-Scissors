@@ -170,3 +170,40 @@ header .score-header {
         font-size: 1rem;
     }
 }
+
+.rps-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    background: rgba(60, 70, 80, 0.88);
+    backdrop-filter: blur(2px);
+    margin: 0;
+    padding: 18px 0 14px 0;
+    font-size: 1.1rem;
+    color: #e0e6ed;
+    text-align: center;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    box-shadow: none;
+    z-index: 2000;
+}
+
+.github-link {
+    color: #90caf9;
+    text-decoration: none;
+    margin-left: 6px;
+    font-weight: bold;
+}
+
+.github-icon {
+    vertical-align: middle;
+    height: 24px;
+    width: 24px;
+    margin-left: 4px;
+    transition: transform 0.5s;
+}
+
+.github-link:hover .github-icon {
+    transform: rotate(360deg);
+}

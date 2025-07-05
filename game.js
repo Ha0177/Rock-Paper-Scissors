@@ -18,7 +18,26 @@ function getComputerChoice() {
 // Handles button clicks and starts a new round
 function getHumanChoice(choice) {
     const computerChoice = getComputerChoice();
+    updateComputerChoiceImg(computerChoice);
     playRound(choice, computerChoice);
+}
+
+// Updates the computer choice image
+function updateComputerChoiceImg(choice) {
+    const img = document.getElementById("computer-choice-img");
+    if (choice === "rock") {
+        img.src = "rock.png";
+        img.alt = "Rock";
+    } else if (choice === "paper") {
+        img.src = "paper.png";
+        img.alt = "Paper";
+    } else if (choice === "scissors") {
+        img.src = "scissors.png";
+        img.alt = "Scissors";
+    } else {
+        img.src = "question-mark.svg";
+        img.alt = "Computer's choice";
+    }
 }
 
 // ===== DOM ELEMENT SELECTIONS =====
@@ -125,6 +144,11 @@ function playAgain() {
         resultText.textContent = "";
         scoreText.textContent = "Human score: 0 | Computer score: 0";
         document.body.classList.remove("win", "draw", "lose");
+        const computerImg = document.getElementById("computer-choice-img");
+        if (computerImg) {
+            computerImg.src = "question-mark.svg";
+            computerImg.alt = "Computer's choice";
+        }
         if (playAgainBtn) {
             playAgainBtn.remove();
         }
